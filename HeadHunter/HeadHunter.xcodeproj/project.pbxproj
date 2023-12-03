@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4E4AA5C92B1CB14B00B012E9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AA5C82B1CB14B00B012E9 /* Config.swift */; };
 		4E4AA5CB2B1CC4D200B012E9 /* RequestProcessingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AA5CA2B1CC4D200B012E9 /* RequestProcessingError.swift */; };
+		4E4AA5D22B1CF53F00B012E9 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AA5D12B1CF53F00B012E9 /* APIRouter.swift */; };
+		4E4AA5D42B1CF6F500B012E9 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AA5D32B1CF6F500B012E9 /* Provider.swift */; };
 		4E99EB392B19DB98008BE7AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99EB382B19DB98008BE7AB /* AppDelegate.swift */; };
 		4E99EB3B2B19DB98008BE7AB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99EB3A2B19DB98008BE7AB /* SceneDelegate.swift */; };
 		4E99EB3D2B19DB98008BE7AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99EB3C2B19DB98008BE7AB /* ViewController.swift */; };
@@ -22,6 +24,8 @@
 		3BFE48E7CB442CE424F3392A /* Pods-HeadHunter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeadHunter.debug.xcconfig"; path = "Target Support Files/Pods-HeadHunter/Pods-HeadHunter.debug.xcconfig"; sourceTree = "<group>"; };
 		4E4AA5C82B1CB14B00B012E9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		4E4AA5CA2B1CC4D200B012E9 /* RequestProcessingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProcessingError.swift; sourceTree = "<group>"; };
+		4E4AA5D12B1CF53F00B012E9 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
+		4E4AA5D32B1CF6F500B012E9 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		4E99EB352B19DB98008BE7AB /* HeadHunter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeadHunter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E99EB382B19DB98008BE7AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E99EB3A2B19DB98008BE7AB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,13 +54,6 @@
 				58D83656256455ED2C82AF85 /* Pods_HeadHunter.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		4E4AA5CE2B1CE9BF00B012E9 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		4E99EB2C2B19DB98008BE7AB = {
@@ -143,9 +140,10 @@
 		4E99EB532B19E354008BE7AB /* NetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
-				4E4AA5CE2B1CE9BF00B012E9 /* New Group */,
 				4E4AA5C82B1CB14B00B012E9 /* Config.swift */,
 				4E4AA5CA2B1CC4D200B012E9 /* RequestProcessingError.swift */,
+				4E4AA5D12B1CF53F00B012E9 /* APIRouter.swift */,
+				4E4AA5D32B1CF6F500B012E9 /* Provider.swift */,
 			);
 			path = NetworkLayer;
 			sourceTree = "<group>";
@@ -281,6 +279,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E99EB3D2B19DB98008BE7AB /* ViewController.swift in Sources */,
+				4E4AA5D22B1CF53F00B012E9 /* APIRouter.swift in Sources */,
+				4E4AA5D42B1CF6F500B012E9 /* Provider.swift in Sources */,
 				4E4AA5C92B1CB14B00B012E9 /* Config.swift in Sources */,
 				4E99EB392B19DB98008BE7AB /* AppDelegate.swift in Sources */,
 				4E4AA5CB2B1CC4D200B012E9 /* RequestProcessingError.swift in Sources */,
