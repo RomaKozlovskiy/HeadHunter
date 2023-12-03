@@ -27,7 +27,7 @@ struct Config {
     
     // MARK: - Properties
     
-    var baseUrl: URLComponents {
+    private var baseUrl: URLComponents {
         get throws {
             guard let baseStringUrl = Bundle.main.infoDictionary?[Key.baseUrl.rawValue] as? String
             else {
@@ -40,6 +40,12 @@ struct Config {
             }
             return baseUrl
         }
+    }
+    
+    // MARK: - Public Methods
+    
+    func getBaseUrl() -> URLComponents {
+        return try! baseUrl
     }
 }
 

@@ -52,6 +52,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4E4AA5CE2B1CE9BF00B012E9 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		4E99EB2C2B19DB98008BE7AB = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +143,7 @@
 		4E99EB532B19E354008BE7AB /* NetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
+				4E4AA5CE2B1CE9BF00B012E9 /* New Group */,
 				4E4AA5C82B1CB14B00B012E9 /* Config.swift */,
 				4E4AA5CA2B1CC4D200B012E9 /* RequestProcessingError.swift */,
 			);
