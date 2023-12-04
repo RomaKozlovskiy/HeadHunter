@@ -35,7 +35,7 @@ class Provider: ProviderProtocol {
     
     func decode<T: Decodable>(_ file: T, data: Data) throws -> T {
         let decoder = JSONDecoder()
-        guard let userData = try? decoder.decode(file.self as! T.Type, from: data) else {
+        guard let userData = try? decoder.decode(T.self, from: data) else {
             throw RequestProcessingError.failedToDecodeJSON
         }
         return userData
