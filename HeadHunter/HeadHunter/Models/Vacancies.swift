@@ -32,11 +32,11 @@ struct Vacancies: Decodable {
 // MARK: - Item
 
 struct Item: Decodable {
-    let id: String?
-    let name: String?
+    let id: String
+    let name: String
     let salary: Salary?
-    let employer: Employer?
-    let snippet: Snippet?
+    let employer: Employer
+    let snippet: Snippet
 }
 
 // MARK: - Salary
@@ -47,7 +47,7 @@ struct Salary: Decodable {
     let currency: String
     
 //    enum Currency: String, Codable { //TODO: - может придется удалить enum
-//        case byr = "BYR"todo
+//        case byr = "BYR"
 //        case kzt = "KZT"
 //        case rur = "RUR"
 //    }
@@ -56,8 +56,8 @@ struct Salary: Decodable {
 // MARK: - Employer
 
 struct Employer: Decodable {
-    let id: String?
-    let name: String?
+    let id: String
+    let name: String
     let logoUrls: LogoUrls?
     
     private enum CodingKeys: String, CodingKey {
@@ -70,9 +70,9 @@ struct Employer: Decodable {
 // MARK: - LogoUrls
 
 struct LogoUrls: Decodable {
-    let the90: String?
-    let the240: String?
-    let original: String?
+    let the90: String
+    let the240: String
+    let original: String
     
     private enum CodingKeys: String, CodingKey {
             case the90 = "90"
