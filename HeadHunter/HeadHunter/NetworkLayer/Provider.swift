@@ -24,21 +24,31 @@ class Provider: ProviderProtocol {
     
     func request(with route: ApiRoute) async throws -> Data {
         guard let url = route.urlComponents.url else {
-            throw RequestProcessingError.invalidUrl
+            throw APIError.description("Invalid API endpoint: \(route.urlComponents)")
         }
         
         var request = URLRequest(url: url)
         request.httpMethod = route.method.rawValue
-        let (data, _) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw APIError.description("API response not HTTP response")
+        }
+        
+        guard httpResponse.statusCode == 200 else {
+            throw APIError.description("Unexpected status code: \(httpResponse.statusCode)")
+        }
         return data
     }
     
     func decode<T: Decodable>(_ file: T, data: Data) throws -> T {
         let decoder = JSONDecoder()
-        guard let userData = try? decoder.decode(T.self, from: data) else {
-            throw RequestProcessingError.failedToDecodeJSON
+        do {
+            let userData = try decoder.decode(T.self, from: data)
+            return userData
+        } catch let error {
+            throw APIError.description("Failed to decode JSON, unexpected error: \(error.localizedDescription)")
         }
-        return userData
     }
 }
 

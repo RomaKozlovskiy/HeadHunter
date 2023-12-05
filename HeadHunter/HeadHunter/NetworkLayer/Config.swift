@@ -31,12 +31,12 @@ struct Config {
         get throws {
             guard let baseStringUrl = Bundle.main.infoDictionary?[Key.baseUrl.rawValue] as? String
             else {
-                throw RequestProcessingError.invalidBaseUrl
+                throw APIError.description("Value for key \(Key.baseUrl.rawValue) not found!")
             }
             
             guard let baseUrl = URLComponents(string: baseStringUrl)
             else {
-                throw RequestProcessingError.invalidBaseUrl
+                throw APIError.description("Invalid server URL: \(baseStringUrl)")
             }
             return baseUrl
         }

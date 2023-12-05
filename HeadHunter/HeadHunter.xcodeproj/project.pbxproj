@@ -14,7 +14,7 @@
 		4E1EC0132B1F484600B497EC /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC0122B1F484600B497EC /* Router.swift */; };
 		4E1EC0162B1F677300B497EC /* VacanciesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC0152B1F677300B497EC /* VacanciesPresenter.swift */; };
 		4E4AA5C92B1CB14B00B012E9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AA5C82B1CB14B00B012E9 /* Config.swift */; };
-		4E4AA5CB2B1CC4D200B012E9 /* RequestProcessingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AA5CA2B1CC4D200B012E9 /* RequestProcessingError.swift */; };
+		4E4AA5CB2B1CC4D200B012E9 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AA5CA2B1CC4D200B012E9 /* APIError.swift */; };
 		4E4AA5D22B1CF53F00B012E9 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AA5D12B1CF53F00B012E9 /* APIRouter.swift */; };
 		4E4AA5D42B1CF6F500B012E9 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AA5D32B1CF6F500B012E9 /* Provider.swift */; };
 		4E99EB392B19DB98008BE7AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E99EB382B19DB98008BE7AB /* AppDelegate.swift */; };
@@ -38,7 +38,7 @@
 		4E1EC0122B1F484600B497EC /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		4E1EC0152B1F677300B497EC /* VacanciesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacanciesPresenter.swift; sourceTree = "<group>"; };
 		4E4AA5C82B1CB14B00B012E9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		4E4AA5CA2B1CC4D200B012E9 /* RequestProcessingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProcessingError.swift; sourceTree = "<group>"; };
+		4E4AA5CA2B1CC4D200B012E9 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		4E4AA5D12B1CF53F00B012E9 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		4E4AA5D32B1CF6F500B012E9 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		4E99EB352B19DB98008BE7AB /* HeadHunter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeadHunter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,7 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				4E4AA5C82B1CB14B00B012E9 /* Config.swift */,
-				4E4AA5CA2B1CC4D200B012E9 /* RequestProcessingError.swift */,
+				4E4AA5CA2B1CC4D200B012E9 /* APIError.swift */,
 				4E4AA5D12B1CF53F00B012E9 /* APIRouter.swift */,
 				4E4AA5D32B1CF6F500B012E9 /* Provider.swift */,
 				4EA8EF962B1E01E200CA27B3 /* VacanciesListNetwork */,
@@ -335,7 +335,7 @@
 				4E1EC00E2B1F35CA00B497EC /* DetailedVacancy.swift in Sources */,
 				4E4AA5C92B1CB14B00B012E9 /* Config.swift in Sources */,
 				4E99EB392B19DB98008BE7AB /* AppDelegate.swift in Sources */,
-				4E4AA5CB2B1CC4D200B012E9 /* RequestProcessingError.swift in Sources */,
+				4E4AA5CB2B1CC4D200B012E9 /* APIError.swift in Sources */,
 				4E1EC0132B1F484600B497EC /* Router.swift in Sources */,
 				4E1EC0162B1F677300B497EC /* VacanciesPresenter.swift in Sources */,
 				4EA8EF982B1E021300CA27B3 /* VacanciesRouter.swift in Sources */,
