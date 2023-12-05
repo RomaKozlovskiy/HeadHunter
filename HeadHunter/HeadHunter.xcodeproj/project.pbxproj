@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E1EC00A2B1F33AC00B497EC /* DetailedVacancyRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC0092B1F33AC00B497EC /* DetailedVacancyRouter.swift */; };
+		4E1EC00C2B1F33B500B497EC /* DetailedVacancyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC00B2B1F33B500B497EC /* DetailedVacancyProvider.swift */; };
+		4E1EC00E2B1F35CA00B497EC /* DetailedVacancy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC00D2B1F35CA00B497EC /* DetailedVacancy.swift */; };
 		4E4AA5C92B1CB14B00B012E9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AA5C82B1CB14B00B012E9 /* Config.swift */; };
 		4E4AA5CB2B1CC4D200B012E9 /* RequestProcessingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AA5CA2B1CC4D200B012E9 /* RequestProcessingError.swift */; };
 		4E4AA5D22B1CF53F00B012E9 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AA5D12B1CF53F00B012E9 /* APIRouter.swift */; };
@@ -25,6 +28,9 @@
 /* Begin PBXFileReference section */
 		18F2ABB159DFBDDFDACAE0AE /* Pods-HeadHunter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeadHunter.release.xcconfig"; path = "Target Support Files/Pods-HeadHunter/Pods-HeadHunter.release.xcconfig"; sourceTree = "<group>"; };
 		3BFE48E7CB442CE424F3392A /* Pods-HeadHunter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeadHunter.debug.xcconfig"; path = "Target Support Files/Pods-HeadHunter/Pods-HeadHunter.debug.xcconfig"; sourceTree = "<group>"; };
+		4E1EC0092B1F33AC00B497EC /* DetailedVacancyRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedVacancyRouter.swift; sourceTree = "<group>"; };
+		4E1EC00B2B1F33B500B497EC /* DetailedVacancyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedVacancyProvider.swift; sourceTree = "<group>"; };
+		4E1EC00D2B1F35CA00B497EC /* DetailedVacancy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedVacancy.swift; sourceTree = "<group>"; };
 		4E4AA5C82B1CB14B00B012E9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		4E4AA5CA2B1CC4D200B012E9 /* RequestProcessingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProcessingError.swift; sourceTree = "<group>"; };
 		4E4AA5D12B1CF53F00B012E9 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
@@ -60,6 +66,15 @@
 				58D83656256455ED2C82AF85 /* Pods_HeadHunter.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4E1EC0082B1F335300B497EC /* DetailedVacancyNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				4E1EC0092B1F33AC00B497EC /* DetailedVacancyRouter.swift */,
+				4E1EC00B2B1F33B500B497EC /* DetailedVacancyProvider.swift */,
+			);
+			path = DetailedVacancyNetwork;
 			sourceTree = "<group>";
 		};
 		4E99EB2C2B19DB98008BE7AB = {
@@ -151,6 +166,7 @@
 				4E4AA5D12B1CF53F00B012E9 /* APIRouter.swift */,
 				4E4AA5D32B1CF6F500B012E9 /* Provider.swift */,
 				4EA8EF962B1E01E200CA27B3 /* VacanciesListNetwork */,
+				4E1EC0082B1F335300B497EC /* DetailedVacancyNetwork */,
 			);
 			path = NetworkLayer;
 			sourceTree = "<group>";
@@ -159,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				4EA8EF9B2B1E036000CA27B3 /* Vacancies.swift */,
+				4E1EC00D2B1F35CA00B497EC /* DetailedVacancy.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -298,11 +315,14 @@
 				4E99EB3D2B19DB98008BE7AB /* ViewController.swift in Sources */,
 				4E4AA5D22B1CF53F00B012E9 /* APIRouter.swift in Sources */,
 				4E4AA5D42B1CF6F500B012E9 /* Provider.swift in Sources */,
+				4E1EC00E2B1F35CA00B497EC /* DetailedVacancy.swift in Sources */,
 				4E4AA5C92B1CB14B00B012E9 /* Config.swift in Sources */,
 				4E99EB392B19DB98008BE7AB /* AppDelegate.swift in Sources */,
 				4E4AA5CB2B1CC4D200B012E9 /* RequestProcessingError.swift in Sources */,
 				4EA8EF982B1E021300CA27B3 /* VacanciesRouter.swift in Sources */,
 				4EA8EF9C2B1E036000CA27B3 /* Vacancies.swift in Sources */,
+				4E1EC00C2B1F33B500B497EC /* DetailedVacancyProvider.swift in Sources */,
+				4E1EC00A2B1F33AC00B497EC /* DetailedVacancyRouter.swift in Sources */,
 				4E99EB3B2B19DB98008BE7AB /* SceneDelegate.swift in Sources */,
 				4EA8EF9A2B1E021A00CA27B3 /* VacanciesProvider.swift in Sources */,
 			);
