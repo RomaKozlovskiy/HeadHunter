@@ -12,10 +12,33 @@ import Foundation
 // MARK: - VacanciesRouter
 
 class VacanciesRouter: ApiRouterProtocol {
-    func vacanciesRoute() -> ApiRoute {
+    func vacanciesRoute(searchText: String?, currentPage: Int?) -> ApiRoute {
         var baseUrl = self.apiRoute()
         baseUrl.method = .get
-        baseUrl.urlComponents.path = ApiPath.vacancyList.rawValue //TODO: - rename ApiPath.vacancyList
+        baseUrl.urlComponents.path = ApiPath.vacancies.rawValue
+        
+        if searchText != nil {
+            var queryItems: [URLQueryItem] = baseUrl.urlComponents.queryItems ?? []
+            let vacanciesQueryItems: [URLQueryItem] = [
+                URLQueryItem(name: "text", value: searchText)
+            ]
+            vacanciesQueryItems.forEach { queryItem in
+                queryItems.append(queryItem)
+            }
+            baseUrl.urlComponents.queryItems = queryItems
+        }
+        
+        if currentPage != nil {
+            var queryItems: [URLQueryItem] = baseUrl.urlComponents.queryItems ?? []
+            let vacanciesQueryItems: [URLQueryItem] = [
+                URLQueryItem(name: "page", value: String(currentPage ?? 0)),
+                URLQueryItem(name: "per_page", value: "20")
+            ]
+            vacanciesQueryItems.forEach { queryItem in
+                queryItems.append(queryItem)
+            }
+            baseUrl.urlComponents.queryItems = queryItems
+        }
         return baseUrl
     }
 }

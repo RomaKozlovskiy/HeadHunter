@@ -12,7 +12,7 @@ import Foundation
 // MARK: - ApiPath
 
 enum ApiPath: String {
-    case vacancyList = "/vacancies"
+    case vacancies = "/vacancies"
 }
 
 // MARK: - Config
@@ -25,7 +25,7 @@ struct Config {
         case baseUrl
     }
     
-    // MARK: - Properties
+    // MARK: - Computed Properties
     
     private var baseUrl: URLComponents {
         get throws {
