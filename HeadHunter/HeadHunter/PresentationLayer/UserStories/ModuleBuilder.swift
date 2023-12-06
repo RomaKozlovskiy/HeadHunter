@@ -17,7 +17,7 @@ protocol ModuleBuilderProtocol: AnyObject {
 
 // MARK: - ModuleBuilder
 
-class ModuleBuilder: ModuleBuilderProtocol {
+final class ModuleBuilder: ModuleBuilderProtocol {
     func createVacanciesModule(router: RouterProtocol) -> UIViewController {
         let view = VacanciesViewController()
         let vacanciesProvider = VacanciesProvider()

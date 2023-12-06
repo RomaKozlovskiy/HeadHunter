@@ -11,7 +11,7 @@ import Foundation
 
 // MARK: - VacanciesRouter
 
-class VacanciesRouter: ApiRouterProtocol {
+final class VacanciesRouter: ApiRouterProtocol {
     func vacanciesRoute(searchText: String?, currentPage: Int?) -> ApiRoute {
         var baseUrl = self.apiRoute()
         baseUrl.method = .get

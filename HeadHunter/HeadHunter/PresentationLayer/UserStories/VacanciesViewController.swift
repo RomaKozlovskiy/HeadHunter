@@ -17,7 +17,7 @@ protocol VacanciesViewProtocol: AnyObject {
 
 // MARK: - VacanciesViewController
 
-class VacanciesViewController: UIViewController {
+final class VacanciesViewController: UIViewController {
     
     var presenter: VacanciesPresenterProtocol!
     

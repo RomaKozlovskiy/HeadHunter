@@ -20,7 +20,7 @@ protocol RouterProtocol: AnyObject {
 
 // MARK: - Router
 
-class Router: RouterProtocol {
+final class Router: RouterProtocol {
     
     // MARK: - Properties
     

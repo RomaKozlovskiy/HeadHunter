@@ -11,7 +11,7 @@ import Foundation
 
 // MARK: - VacanciesProvider
 
-class VacanciesProvider: Provider {
+final class VacanciesProvider: Provider {
     
     // MARK: - Private Properties
     

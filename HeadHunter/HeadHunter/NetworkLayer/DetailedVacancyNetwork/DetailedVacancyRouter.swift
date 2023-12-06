@@ -11,7 +11,7 @@ import Foundation
 
 // MARK: - DetailedVacancyRouter
 
-class DetailedVacancyRouter: ApiRouterProtocol {
+final class DetailedVacancyRouter: ApiRouterProtocol {
     func detailedVacancyRoute(by vacancyId: String) -> ApiRoute {
         var baseUrl = self.apiRoute()
         baseUrl.method = .get

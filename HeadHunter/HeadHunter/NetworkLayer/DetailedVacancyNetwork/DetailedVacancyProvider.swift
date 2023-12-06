@@ -11,7 +11,7 @@ import Foundation
 
 // MARK: - DetailedVacancyProvider
 
-class DetailedVacancyProvider: Provider {
+final class DetailedVacancyProvider: Provider {
     let detailedVacancyRouter = DetailedVacancyRouter()
     var detailedVacancy: DetailedVacancy?
     

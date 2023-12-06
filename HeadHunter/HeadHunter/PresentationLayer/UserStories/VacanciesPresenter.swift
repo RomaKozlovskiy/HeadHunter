@@ -21,7 +21,7 @@ protocol VacanciesPresenterProtocol: AnyObject {
 
 // MARK: - VacanciesPresenter
 
-class VacanciesPresenter: VacanciesPresenterProtocol {
+final class VacanciesPresenter: VacanciesPresenterProtocol {
     
     // MARK: - Properties
     
