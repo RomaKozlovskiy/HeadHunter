@@ -8,6 +8,7 @@
 // MARK: - Import
 
 import UIKit
+import SnapKit
 
 // MARK: - VacanciesViewProtocol
 
@@ -20,11 +21,15 @@ protocol VacanciesViewProtocol: AnyObject {
 final class VacanciesViewController: UIViewController {
     
     var presenter: VacanciesPresenterProtocol!
+    let vacanciesCollectionView = VacanciesCollectionView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
+        view.addSubview(vacanciesCollectionView)
+        vacanciesCollectionView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 }
 

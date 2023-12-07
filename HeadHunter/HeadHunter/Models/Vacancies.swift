@@ -35,8 +35,10 @@ struct Item: Decodable {
     let id: String?
     let name: String?
     let salary: Salary?
+    let address: Address?
     let employer: Employer?
     let snippet: Snippet?
+    let schedule: Employment?
 }
 
 // MARK: - Salary
@@ -51,6 +53,14 @@ struct Salary: Decodable {
 //        case kzt = "KZT"
 //        case rur = "RUR"
 //    }
+}
+
+// MARK: - Address
+
+struct Address: Decodable {
+    let city: String?
+    let street: String
+    let raw: String?
 }
 
 // MARK: - Employer
@@ -88,3 +98,9 @@ struct Snippet: Decodable {
     let responsibility: String?
 }
 
+// MARK: - Employment
+
+struct Employment: Decodable {
+    let id: String?
+    let name: String?
+}
