@@ -149,6 +149,7 @@ private extension VacancyCollectionViewCell {
         let result = UIImageView()
         result.image = UIImage(systemName: "paperplane.fill")
         result.clipsToBounds = true
+        result.contentMode = .scaleAspectFit
         result.layer.cornerRadius = 50 / 2
         return result
     }
