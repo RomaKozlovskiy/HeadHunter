@@ -38,7 +38,7 @@ struct Item: Decodable {
     let address: Address?
     let employer: Employer?
     let snippet: Snippet?
-    let schedule: Employment?
+    let experience: Employment?
 }
 
 // MARK: - Salary
@@ -47,19 +47,13 @@ struct Salary: Decodable {
     let from: Int?
     let to: Int?
     let currency: String?
-    
-//    enum Currency: String, Codable { //TODO: - может придется удалить enum
-//        case byr = "BYR"
-//        case kzt = "KZT"
-//        case rur = "RUR"
-//    }
 }
 
 // MARK: - Address
 
 struct Address: Decodable {
     let city: String?
-    let street: String
+    let street: String?
     let raw: String?
 }
 

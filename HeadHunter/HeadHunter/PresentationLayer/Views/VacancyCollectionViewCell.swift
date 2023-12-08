@@ -16,11 +16,11 @@ final class VacancyCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Private Properties
     
-    private lazy var vacancyTitle: UILabel = _vacancyTitle
+    private lazy var vacancyName: UILabel = _vacancyName
     private lazy var salaryLabel: UILabel = _salaryLabel
     private lazy var vacancyCity: UILabel = _vacancyCity
-    private lazy var companyTitle: UILabel = _companyTitle
-    private lazy var scheduleLabel: UILabel = _scheduleLabel
+    private lazy var companyName: UILabel = _companyName
+    private lazy var experienceLabel: UILabel = _experienceLabel
     private lazy var companyLogo: UIImageView = _companyLogo
     private lazy var showDetailsButton: UIButton = _showDetailsButton
     private lazy var favoriteButton: UIButton = _favoriteButton
@@ -30,7 +30,6 @@ final class VacancyCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
-        layer.cornerRadius = 10
         addSubviews()
         applyConstraints()
     }
@@ -39,28 +38,51 @@ final class VacancyCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Override Methods
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = 10
+        layer.shadowRadius = 5
+        layer.shadowOpacity = 0.1
+        layer.shadowOffset = CGSize(width: 5, height: 5)
+        clipsToBounds = false
+    }
+    
     // MARK: - Public Methods
     
-    func addSubviews() {
-        addSubview(vacancyTitle)
+    func setup(with vacancies: Vacancies?, at index: Int) {
+        let vacancy = vacancies?.items[index]
+        vacancyName.text = vacancy?.name
+        setSalary(from: vacancy)
+        vacancyCity.text = vacancy?.address?.city
+        companyName.text = vacancy?.employer?.name
+        experienceLabel.text = vacancy?.experience?.name
+        companyLogo.load(stringUrl: vacancy?.employer?.logoUrls?.original ?? "")
+    }
+    
+    // MARK: - Private Methods
+    
+    private func addSubviews() {
+        addSubview(vacancyName)
         addSubview(salaryLabel)
         addSubview(vacancyCity)
-        addSubview(companyTitle)
-        addSubview(scheduleLabel)
+        addSubview(companyName)
+        addSubview(experienceLabel)
         addSubview(companyLogo)
         addSubview(showDetailsButton)
         addSubview(favoriteButton)
     }
     
-    func applyConstraints() {
-        vacancyTitle.snp.makeConstraints {
+    private func applyConstraints() {
+        vacancyName.snp.makeConstraints {
             $0.top.equalToSuperview().inset(10)
             $0.leading.equalToSuperview().inset(10)
             $0.trailing.equalToSuperview().inset(80)
         }
         
         salaryLabel.snp.makeConstraints {
-            $0.top.equalTo(vacancyTitle.snp.bottom).offset(5)
+            $0.top.equalTo(vacancyName.snp.bottom).offset(5)
             $0.leading.equalToSuperview().inset(10)
             $0.trailing.equalToSuperview().inset(80)
         }
@@ -71,14 +93,14 @@ final class VacancyCollectionViewCell: UICollectionViewCell {
             $0.trailing.equalToSuperview().inset(80)
         }
         
-        companyTitle.snp.makeConstraints {
+        companyName.snp.makeConstraints {
             $0.top.equalTo(vacancyCity.snp.bottom).offset(5)
             $0.leading.equalToSuperview().inset(10)
             $0.trailing.equalToSuperview().inset(80)
         }
         
-        scheduleLabel.snp.makeConstraints {
-            $0.top.equalTo(companyTitle.snp.bottom).offset(10)
+        experienceLabel.snp.makeConstraints {
+            $0.top.equalTo(companyName.snp.bottom).offset(10)
             $0.leading.equalToSuperview().inset(10)
             $0.trailing.equalToSuperview().inset(80)
         }
@@ -91,9 +113,9 @@ final class VacancyCollectionViewCell: UICollectionViewCell {
         }
         
         companyLogo.snp.makeConstraints {
-            $0.top.equalTo(vacancyTitle.snp.bottom)
+            $0.top.equalTo(favoriteButton.snp.bottom).offset(10)
             $0.trailing.equalToSuperview().inset(10)
-            $0.height.width.equalTo(50)
+            $0.height.width.equalTo(70)
         }
         
         favoriteButton.snp.makeConstraints {
@@ -102,55 +124,89 @@ final class VacancyCollectionViewCell: UICollectionViewCell {
             $0.height.width.equalTo(40)
         }
     }
+    
+    private func setSalary(from vacancy: Item?) {
+        let salaryFrom = salaryFormatting(vacancy?.salary?.from)
+        let salaryTo = salaryFormatting(vacancy?.salary?.to)
+        let currency = currencyFormatting(vacancy?.salary?.currency ?? "")
+        
+        if let salaryFrom = salaryFrom, let salaryTo = salaryTo, let currency = currency {
+            salaryLabel.text = "от " + salaryFrom + " до " + salaryTo + " " + currency
+        } else if salaryFrom != nil && currency != nil {
+            salaryLabel.text = salaryFrom! + " " + currency!
+        } else {
+            salaryLabel.text = "Заработная плата не указана"
+        }
+    }
+    
+    
+    private func salaryFormatting(_ salary: Int?) -> String? {
+        guard let salary = salary else { return nil }
+        let formatter = NumberFormatter()
+        formatter.groupingSeparator = " "
+        formatter.numberStyle = .decimal
+        let formattedNumber = formatter.string(from: NSNumber(value: salary)) ?? ""
+        return formattedNumber
+    }
+    
+    private func currencyFormatting(_ currency: String) -> String? {
+        var currency = currency
+        switch currency {
+        case "RUR":
+            currency = currency.replacingOccurrences(of: currency, with: "RUB")
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .currency
+            formatter.currencyCode = currency
+            if let currencySymbol = formatter.currencySymbol {
+                return currencySymbol
+            }
+        default:
+            return currency
+        }
+        return nil
+    }
 }
 
 // MARK: - Private Extension
 
 private extension VacancyCollectionViewCell {
-    var _vacancyTitle: UILabel {
+    var _vacancyName: UILabel {
         let result = UILabel()
-        result.text = "Продавец-консультант (насосное оборудование)"
-        result.font = UIFont.systemFont(ofSize: 19, weight: .semibold)
         result.numberOfLines = 2
+        result.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         return result
     }
     
     var _salaryLabel: UILabel {
         let result = UILabel()
-        result.text = "до 40 000 RUB"
         result.numberOfLines = 2
-        result.font = UIFont.systemFont(ofSize: 21, weight: .black)
-        result.adjustsFontForContentSizeCategory = true
+        result.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         return result
     }
     
     var _vacancyCity: UILabel {
         let result = UILabel()
-        result.text = "Ростов-на-Дону"
         result.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         return result
     }
     
-    var _companyTitle: UILabel {
+    var _companyName: UILabel {
         let result = UILabel()
-        result.text = "Яндекс Крауд"
         result.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         return result
     }
     
-    var _scheduleLabel: UILabel {
+    var _experienceLabel: UILabel {
         let result = UILabel()
-        result.text = "Полный день"
         result.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         return result
     }
     
     var _companyLogo: UIImageView {
         let result = UIImageView()
-        result.image = UIImage(systemName: "paperplane.fill")
         result.clipsToBounds = true
         result.contentMode = .scaleAspectFit
-        result.layer.cornerRadius = 50 / 2
+        result.layer.cornerRadius = 70 / 2
         return result
     }
     

@@ -14,7 +14,7 @@
 		4E1EC0132B1F484600B497EC /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC0122B1F484600B497EC /* Router.swift */; };
 		4E1EC0162B1F677300B497EC /* VacanciesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC0152B1F677300B497EC /* VacanciesPresenter.swift */; };
 		4E1EC0182B20CB7800B497EC /* VacancyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC0172B20CB7800B497EC /* VacancyCollectionViewCell.swift */; };
-		4E1EC01A2B20CBAF00B497EC /* VacanciesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC0192B20CBAF00B497EC /* VacanciesCollectionView.swift */; };
+		4E1EC01E2B21E17A00B497EC /* Extension + UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC01D2B21E17A00B497EC /* Extension + UIImageView.swift */; };
 		4E4AA5C92B1CB14B00B012E9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AA5C82B1CB14B00B012E9 /* Config.swift */; };
 		4E4AA5CB2B1CC4D200B012E9 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AA5CA2B1CC4D200B012E9 /* APIError.swift */; };
 		4E4AA5D22B1CF53F00B012E9 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AA5D12B1CF53F00B012E9 /* APIRouter.swift */; };
@@ -40,7 +40,7 @@
 		4E1EC0122B1F484600B497EC /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		4E1EC0152B1F677300B497EC /* VacanciesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacanciesPresenter.swift; sourceTree = "<group>"; };
 		4E1EC0172B20CB7800B497EC /* VacancyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacancyCollectionViewCell.swift; sourceTree = "<group>"; };
-		4E1EC0192B20CBAF00B497EC /* VacanciesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacanciesCollectionView.swift; sourceTree = "<group>"; };
+		4E1EC01D2B21E17A00B497EC /* Extension + UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIImageView.swift"; sourceTree = "<group>"; };
 		4E4AA5C82B1CB14B00B012E9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		4E4AA5CA2B1CC4D200B012E9 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		4E4AA5D12B1CF53F00B012E9 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
@@ -94,6 +94,14 @@
 			path = VacanciesModule;
 			sourceTree = "<group>";
 		};
+		4E1EC01C2B21E15E00B497EC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4E1EC01D2B21E17A00B497EC /* Extension + UIImageView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		4E99EB2C2B19DB98008BE7AB = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				4E99EB4C2B19DD64008BE7AB /* ApplicationLayer */,
+				4E1EC01C2B21E15E00B497EC /* Extensions */,
 				4E99EB542B19E413008BE7AB /* Models */,
 				4E99EB532B19E354008BE7AB /* NetworkLayer */,
 				4E99EB4D2B19DD86008BE7AB /* PresentationLayer */,
@@ -175,7 +184,6 @@
 		4E99EB512B19DE31008BE7AB /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4E1EC0192B20CBAF00B497EC /* VacanciesCollectionView.swift */,
 				4E1EC0172B20CB7800B497EC /* VacancyCollectionViewCell.swift */,
 			);
 			path = Views;
@@ -351,7 +359,7 @@
 				4E1EC0182B20CB7800B497EC /* VacancyCollectionViewCell.swift in Sources */,
 				4E1EC0112B1F481500B497EC /* ModuleBuilder.swift in Sources */,
 				4E99EB3B2B19DB98008BE7AB /* SceneDelegate.swift in Sources */,
-				4E1EC01A2B20CBAF00B497EC /* VacanciesCollectionView.swift in Sources */,
+				4E1EC01E2B21E17A00B497EC /* Extension + UIImageView.swift in Sources */,
 				4EA8EF9A2B1E021A00CA27B3 /* VacanciesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
