@@ -92,6 +92,8 @@
 		4E1EC0142B1F671A00B497EC /* VacanciesModule */ = {
 			isa = PBXGroup;
 			children = (
+				4E99EB3C2B19DB98008BE7AB /* VacanciesViewController.swift */,
+				4E1EC0152B1F677300B497EC /* VacanciesPresenter.swift */,
 			);
 			path = VacanciesModule;
 			sourceTree = "<group>";
@@ -178,8 +180,6 @@
 				4E1EC0102B1F481500B497EC /* ModuleBuilder.swift */,
 				4E1EC0122B1F484600B497EC /* Router.swift */,
 				4E1EC0142B1F671A00B497EC /* VacanciesModule */,
-				4E99EB3C2B19DB98008BE7AB /* VacanciesViewController.swift */,
-				4E1EC0152B1F677300B497EC /* VacanciesPresenter.swift */,
 			);
 			path = UserStories;
 			sourceTree = "<group>";
