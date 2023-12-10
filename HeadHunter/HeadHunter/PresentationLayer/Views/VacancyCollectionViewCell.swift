@@ -49,6 +49,14 @@ final class VacancyCollectionViewCell: UICollectionViewCell {
         clipsToBounds = false
     }
     
+    override func prepareForReuse() {
+        vacancyName.text = nil
+        salaryLabel.text = nil
+        vacancyCity.text = nil
+        companyName.text = nil
+        experienceLabel.text = nil
+        companyLogo.image = nil
+    }
     // MARK: - Public Methods
     
     func setup(with vacancies: Vacancies?, at index: Int) {

@@ -15,6 +15,7 @@
 		4E1EC0162B1F677300B497EC /* VacanciesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC0152B1F677300B497EC /* VacanciesPresenter.swift */; };
 		4E1EC0182B20CB7800B497EC /* VacancyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC0172B20CB7800B497EC /* VacancyCollectionViewCell.swift */; };
 		4E1EC01E2B21E17A00B497EC /* Extension + UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC01D2B21E17A00B497EC /* Extension + UIImageView.swift */; };
+		4E1EC0202B23694600B497EC /* Extension  + UISearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC01F2B23694600B497EC /* Extension  + UISearchTextField.swift */; };
 		4E4AA5C92B1CB14B00B012E9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AA5C82B1CB14B00B012E9 /* Config.swift */; };
 		4E4AA5CB2B1CC4D200B012E9 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AA5CA2B1CC4D200B012E9 /* APIError.swift */; };
 		4E4AA5D22B1CF53F00B012E9 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AA5D12B1CF53F00B012E9 /* APIRouter.swift */; };
@@ -41,6 +42,7 @@
 		4E1EC0152B1F677300B497EC /* VacanciesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacanciesPresenter.swift; sourceTree = "<group>"; };
 		4E1EC0172B20CB7800B497EC /* VacancyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacancyCollectionViewCell.swift; sourceTree = "<group>"; };
 		4E1EC01D2B21E17A00B497EC /* Extension + UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIImageView.swift"; sourceTree = "<group>"; };
+		4E1EC01F2B23694600B497EC /* Extension  + UISearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension  + UISearchTextField.swift"; sourceTree = "<group>"; };
 		4E4AA5C82B1CB14B00B012E9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		4E4AA5CA2B1CC4D200B012E9 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		4E4AA5D12B1CF53F00B012E9 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				4E1EC01D2B21E17A00B497EC /* Extension + UIImageView.swift */,
+				4E1EC01F2B23694600B497EC /* Extension  + UISearchTextField.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				4E99EB3D2B19DB98008BE7AB /* VacanciesViewController.swift in Sources */,
 				4E4AA5D22B1CF53F00B012E9 /* APIRouter.swift in Sources */,
 				4E4AA5D42B1CF6F500B012E9 /* Provider.swift in Sources */,
+				4E1EC0202B23694600B497EC /* Extension  + UISearchTextField.swift in Sources */,
 				4E1EC00E2B1F35CA00B497EC /* DetailedVacancy.swift in Sources */,
 				4E4AA5C92B1CB14B00B012E9 /* Config.swift in Sources */,
 				4E99EB392B19DB98008BE7AB /* AppDelegate.swift in Sources */,

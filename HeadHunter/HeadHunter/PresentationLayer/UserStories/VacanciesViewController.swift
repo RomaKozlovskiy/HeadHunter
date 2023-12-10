@@ -9,25 +9,36 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 // MARK: - VacanciesViewProtocol
 
 protocol VacanciesViewProtocol: AnyObject {
-    
+    @MainActor
+    func reloadData()
 }
 
 // MARK: - VacanciesViewController
 
 final class VacanciesViewController: UIViewController {
     
+    // MARK: - Properties
+    
     var presenter: VacanciesPresenterProtocol!
-    var collectionView: UICollectionView!
+    private var collectionView: UICollectionView!
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var cancellabels = Set<AnyCancellable>()
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupSearchController()
         setupCollectionView()
         addSubviews()
         applyConstraints()
+        listenForSearchTextChanges()
+        presenter.fetchVacancies()
     }
     
     // MARK: - Private Methods
@@ -42,6 +53,15 @@ final class VacanciesViewController: UIViewController {
         }
     }
     
+    private func setupSearchController() {
+        navigationItem.searchController = searchController
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.placeholder = "Введите в поиск название вакансии"
+        definesPresentationContext = false
+        navigationItem.hidesSearchBarWhenScrolling = true
+    }
+    
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -52,24 +72,38 @@ final class VacanciesViewController: UIViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.register(VacancyCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: VacancyCollectionViewCell.self))
     }
+    
+    private func listenForSearchTextChanges() {
+        searchController.searchBar.searchTextField.textPublisher()
+            .debounce(for: 0.5, scheduler: DispatchQueue.main)
+            .sink { (searchText) in
+                self.presenter.prepareModelForRequest()
+                self.presenter.fetchVacancies(searchText: searchText, page: 0)
+            }
+            .store(in: &cancellabels)
+    }
 }
 
 
 // MARK: - VacanciesViewProtocol
 
 extension VacanciesViewController: VacanciesViewProtocol {
-    
+    func reloadData() {
+        collectionView.reloadData()
+    }
 }
 
 // MARK: - UICollectionViewDataSource
 
 extension VacanciesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        3
+        presenter.vacancies?.items.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: VacancyCollectionViewCell.self), for: indexPath) as! VacancyCollectionViewCell
+        let vacancies = presenter.vacancies
+        cell.setup(with: vacancies, at: indexPath.row)
         return cell
     }
 }
@@ -79,6 +113,15 @@ extension VacanciesViewController: UICollectionViewDataSource {
 extension VacanciesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let vacancies = presenter.vacancies else { return }
+        if indexPath.row == vacancies.items.count - 5 {
+            let searchText = searchController.searchBar.searchTextField.text ?? ""
+            let page = vacancies.page + 1
+            presenter.fetchAdditionalVacancies(searchText: searchText, page: page)
+        }
     }
 }
 

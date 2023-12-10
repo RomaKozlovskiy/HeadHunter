@@ -19,7 +19,7 @@ final class VacanciesProvider: Provider {
 
     // MARK: - Public Methods
     
-    func fetchVacancies(searchText: String?, currentPage: Int?) async throws -> Vacancies? {
+    func fetchVacancies(searchText: String? = nil, currentPage: Int? = nil) async throws -> Vacancies? {
         var vacancies: Vacancies?
         do {
             let route = vacanciesRouter.vacanciesRoute(searchText: searchText, currentPage: currentPage)
