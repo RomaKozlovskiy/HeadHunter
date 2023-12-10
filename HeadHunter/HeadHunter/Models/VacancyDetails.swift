@@ -11,7 +11,7 @@ import Foundation
 
 // MARK: - DetailedVacancy
 
-struct DetailedVacancy: Decodable {
+struct VacancyDetails: Decodable {
     let id: String
     let name: String
     let salary: Salary?

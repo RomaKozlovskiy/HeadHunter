@@ -16,6 +16,7 @@ protocol RouterProtocol: AnyObject {
     var moduleBuilder: ModuleBuilderProtocol? { get set }
     
     func initialViewController()
+    func showVacancyDetails(with vacancyID: String)
 }
 
 // MARK: - Router
@@ -42,6 +43,17 @@ final class Router: RouterProtocol {
                 return
             }
             navigationController.viewControllers = [vacanciesViewController]
+        }
+    }
+    
+    func showVacancyDetails(with vacancyID: String) {
+        if let navigationController = navigationController {
+            guard let vacancyDetailsViewController = moduleBuilder?.createVacancyDetailsModule(
+                with: vacancyID, router: self)
+            else {
+                return
+            }
+            navigationController.pushViewController(vacancyDetailsViewController, animated: true)
         }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  DetailedVacancyRouter.swift
+//  VacancyDetailsRouter.swift
 //  HeadHunter
 //
 //  Created by Роман Козловский on 05.12.2023.
@@ -9,10 +9,10 @@
 
 import Foundation
 
-// MARK: - DetailedVacancyRouter
+// MARK: - VacancyDetailsRouter
 
-final class DetailedVacancyRouter: ApiRouterProtocol {
-    func detailedVacancyRoute(by vacancyId: String) -> ApiRoute {
+final class VacancyDetailsRouter: ApiRouterProtocol {
+    func vacancyDetailsRoute(by vacancyId: String) -> ApiRoute {
         var baseUrl = self.apiRoute()
         baseUrl.method = .get
         baseUrl.urlComponents.path = ApiPath.vacancies.rawValue + "/" + vacancyId

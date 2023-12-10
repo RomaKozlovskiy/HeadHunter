@@ -22,6 +22,7 @@ protocol VacanciesPresenterProtocol: AnyObject {
     func fetchVacancies()
     func fetchVacancies(with searchText: String)
     func fetchAdditionalVacancies(with searchText: String)
+    func showVacancyDetails(with vacancyID: String)
 }
 
 // MARK: - VacanciesPresenter
@@ -87,5 +88,9 @@ final class VacanciesPresenter: VacanciesPresenterProtocol {
                 await view?.reloadData()
             }
         }
+    }
+    
+    func showVacancyDetails(with vacancyID: String) {
+        router?.showVacancyDetails(with: vacancyID)
     }
 }

@@ -85,7 +85,7 @@ final class VacanciesViewController: UIViewController {
 }
 
 
-// MARK: - VacanciesViewProtocol
+// MARK: - VacanciesViewProtocol Implementation
 
 extension VacanciesViewController: VacanciesViewProtocol {
     func reloadData() {
@@ -112,7 +112,8 @@ extension VacanciesViewController: UICollectionViewDataSource {
 
 extension VacanciesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        guard let vacancyID = presenter.vacancies?.items[indexPath.row].id else { return }
+        presenter.showVacancyDetails(with: vacancyID)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
