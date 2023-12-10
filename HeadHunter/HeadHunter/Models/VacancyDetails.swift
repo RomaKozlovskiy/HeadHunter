@@ -15,12 +15,17 @@ struct VacancyDetails: Decodable {
     let id: String
     let name: String
     let salary: Salary?
+    let address: Address?
+    let experience: BillingType?
+    let schedule: BillingType?
+    let employment: BillingType?
     let description: String
-    let area: Area
 }
 
-// MARK: - Area
+// MARK: - BillingType
 
-struct Area: Decodable {
-    let name: String
+struct BillingType: Decodable {
+    let id: String?
+    let name: String?
 }
+
