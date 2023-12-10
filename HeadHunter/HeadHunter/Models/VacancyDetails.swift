@@ -19,6 +19,7 @@ struct VacancyDetails: Decodable {
     let experience: BillingType?
     let schedule: BillingType?
     let employment: BillingType?
+    let employer: Employer?
     let description: String
 }
 
