@@ -78,7 +78,7 @@ final class VacanciesViewController: UIViewController {
             .debounce(for: 0.5, scheduler: DispatchQueue.main)
             .sink { (searchText) in
                 self.presenter.prepareModelForRequest()
-                self.presenter.fetchVacancies(searchText: searchText, page: 0)
+                self.presenter.fetchVacancies(with: searchText)
             }
             .store(in: &cancellabels)
     }
@@ -118,9 +118,8 @@ extension VacanciesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let vacancies = presenter.vacancies else { return }
         if indexPath.row == vacancies.items.count - 5 {
-            let searchText = searchController.searchBar.searchTextField.text ?? ""
-            let page = vacancies.page + 1
-            presenter.fetchAdditionalVacancies(searchText: searchText, page: page)
+            guard let searchText = searchController.searchBar.searchTextField.text else { return }
+            presenter.fetchAdditionalVacancies(with: searchText)
         }
     }
 }

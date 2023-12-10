@@ -20,8 +20,8 @@ protocol VacanciesPresenterProtocol: AnyObject {
     )
     func prepareModelForRequest()
     func fetchVacancies()
-    func fetchVacancies(searchText: String, page: Int)
-    func fetchAdditionalVacancies(searchText: String, page: Int)
+    func fetchVacancies(with searchText: String)
+    func fetchAdditionalVacancies(with searchText: String)
 }
 
 // MARK: - VacanciesPresenter
@@ -62,12 +62,12 @@ final class VacanciesPresenter: VacanciesPresenterProtocol {
         }
     }
     
-    func fetchVacancies(searchText: String, page: Int) {
+    func fetchVacancies(with searchText: String) {
         if searchText.count >= 3 {
             Task { [weak self] in
                 guard let strongSelf = self else { return }
                 if vacancies == nil {
-                    let vacancies = try await vacanciesProvider.fetchVacancies(searchText: searchText, currentPage: page)
+                    let vacancies = try await vacanciesProvider.fetchVacancies(with: searchText, currentPage: 0)
                     strongSelf.vacancies = vacancies
                 }
                 await view?.reloadData()
@@ -75,12 +75,13 @@ final class VacanciesPresenter: VacanciesPresenterProtocol {
         }
     }
     
-    func fetchAdditionalVacancies(searchText: String, page: Int) {
+    func fetchAdditionalVacancies(with searchText: String) {
         guard let vacancies = vacancies else { return }
+        let page = vacancies.page + 1
         if vacancies.items.count < vacancies.pages {
             Task { [weak self] in
                 guard let strongSelf = self else { return }
-                guard let vacancies = try await vacanciesProvider.fetchVacancies(searchText: searchText, currentPage: page) else { return }
+                guard let vacancies = try await vacanciesProvider.fetchVacancies(with: searchText, currentPage: page) else { return }
                 strongSelf.vacancies?.items.append(contentsOf: vacancies.items)
                 strongSelf.vacancies?.page = vacancies.page
                 await view?.reloadData()
