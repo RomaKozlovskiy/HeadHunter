@@ -17,6 +17,8 @@ protocol VacancyDetailsPresenterProtocol: AnyObject {
         vacancyDetailsProvider: VacancyDetailsProvider,
         vacancyID: String
     )
+    
+    func fetchVacancyDetails()
 }
 
 // MARK: - VacancyDetailsPresenter
@@ -39,6 +41,14 @@ final class VacancyDetailsPresenter: VacancyDetailsPresenterProtocol {
             self.view = view
             self.vacancyDetailsProvider = vacancyDetailsProvider
             self.vacancyID = vacancyID
+    }
+    
+    func fetchVacancyDetails() {
+        Task {
+            guard let vacancyID = vacancyID else { return }
+            guard let vacancyDetails = try await vacancyDetailsProvider.fetchDetailedVacancy(by: vacancyID) else { return }
+            await view?.showVacancyDetails(vacancyDetails)
+        }
     }
 }
 
