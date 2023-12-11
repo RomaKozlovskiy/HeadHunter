@@ -105,16 +105,6 @@ final class VacancyDetailsViewController: UIViewController {
             $0.width.equalTo(10)
         }
     }
-    
-    private func convertHTMLText(_ text: String) -> String {
-        if let data = text.data(using: .utf8) {
-            if let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil) {
-                let plainString = attributedString.string
-                return plainString
-            }
-        }
-        return ""
-    }
 }
 
 // MARK: - VacancyDetailsViewProtocol Implementation
@@ -128,7 +118,7 @@ extension VacancyDetailsViewController: VacancyDetailsViewProtocol {
         companyName.text = vacancyDetails.employer?.name
         cityName.text = vacancyDetails.address?.raw
         professionalRole.text = vacancyDetails.professionalRole[0]?.name
-        descriptionLabel.text = convertHTMLText(vacancyDetails.description)
+        descriptionLabel.text = vacancyDetails.description.htmlToAttributedString?.string
         companyLogo.load(stringUrl: vacancyDetails.employer?.logoUrls?.original ?? "")
     }
 }

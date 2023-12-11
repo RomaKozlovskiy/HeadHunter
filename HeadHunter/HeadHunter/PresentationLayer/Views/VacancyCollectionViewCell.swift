@@ -134,10 +134,10 @@ final class VacancyCollectionViewCell: UICollectionViewCell {
     }
     
     private func setSalary(from vacancy: Item?) {
-        let salaryFrom = salaryFormatting(vacancy?.salary?.from)
-        let salaryTo = salaryFormatting(vacancy?.salary?.to)
-        let currency = currencyFormatting(vacancy?.salary?.currency ?? "")
-        
+        let salaryFrom = vacancy?.salary?.from?.salaryFormatting
+        let salaryTo = vacancy?.salary?.to?.salaryFormatting
+        let currency = vacancy?.salary?.currency?.currencyFormatting
+
         if let salaryFrom = salaryFrom, let salaryTo = salaryTo, let currency = currency {
             salaryLabel.text = "от " + salaryFrom + " до " + salaryTo + " " + currency
         } else if salaryFrom != nil && currency != nil {
@@ -145,33 +145,6 @@ final class VacancyCollectionViewCell: UICollectionViewCell {
         } else {
             salaryLabel.text = "Заработная плата не указана"
         }
-    }
-    
-    
-    private func salaryFormatting(_ salary: Int?) -> String? {
-        guard let salary = salary else { return nil }
-        let formatter = NumberFormatter()
-        formatter.groupingSeparator = " "
-        formatter.numberStyle = .decimal
-        let formattedNumber = formatter.string(from: NSNumber(value: salary)) ?? ""
-        return formattedNumber
-    }
-    
-    private func currencyFormatting(_ currency: String) -> String? {
-        var currency = currency
-        switch currency {
-        case "RUR":
-            currency = currency.replacingOccurrences(of: currency, with: "RUB")
-            let formatter = NumberFormatter()
-            formatter.numberStyle = .currency
-            formatter.currencyCode = currency
-            if let currencySymbol = formatter.currencySymbol {
-                return currencySymbol
-            }
-        default:
-            return currency
-        }
-        return nil
     }
 }
 
