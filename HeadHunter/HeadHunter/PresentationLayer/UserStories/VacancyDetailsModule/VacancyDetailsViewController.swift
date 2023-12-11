@@ -105,6 +105,20 @@ final class VacancyDetailsViewController: UIViewController {
             $0.width.equalTo(10)
         }
     }
+    
+    private func setSalary(from vacancyDetails: VacancyDetails?) {
+        let salaryFrom = vacancyDetails?.salary?.from?.salaryFormatting
+        let salaryTo = vacancyDetails?.salary?.to?.salaryFormatting
+        let currency = vacancyDetails?.salary?.currency?.currencyFormatting
+
+        if let salaryFrom = salaryFrom, let salaryTo = salaryTo, let currency = currency {
+            salaryLabel.text = "от " + salaryFrom + " до " + salaryTo + " " + currency
+        } else if salaryFrom != nil && currency != nil {
+            salaryLabel.text = salaryFrom! + " " + currency!
+        } else {
+            salaryLabel.text = "Заработная плата не указана"
+        }
+    }
 }
 
 // MARK: - VacancyDetailsViewProtocol Implementation
@@ -112,7 +126,7 @@ final class VacancyDetailsViewController: UIViewController {
 extension VacancyDetailsViewController: VacancyDetailsViewProtocol {
     func showVacancyDetails(_ vacancyDetails: VacancyDetails) {
         vacancyName.text = vacancyDetails.name
-        salaryLabel.text = "от \(vacancyDetails.salary?.from ?? 0) до \(vacancyDetails.salary?.to ?? 0) " + (vacancyDetails.salary?.currency ?? "?")
+        setSalary(from: vacancyDetails)
         experienceLabel.text = "Требуемый опыт: " + (vacancyDetails.experience?.name ?? "")
         employmentScheduleLabel.text = (vacancyDetails.employment?.name)! + ", " + (vacancyDetails.schedule?.name)!
         companyName.text = vacancyDetails.employer?.name
