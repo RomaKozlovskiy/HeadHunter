@@ -20,6 +20,9 @@
 		4E1EC0252B25E17700B497EC /* VacancyDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC0242B25E17700B497EC /* VacancyDetailsPresenter.swift */; };
 		4E1EC0272B272E2D00B497EC /* Extension + String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC0262B272E2D00B497EC /* Extension + String.swift */; };
 		4E1EC0292B27323E00B497EC /* Extension  + Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC0282B27323E00B497EC /* Extension  + Int.swift */; };
+		4E1EC02D2B273A7700B497EC /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC02C2B273A7700B497EC /* TabBarController.swift */; };
+		4E1EC0302B27405100B497EC /* FavoritesVacanciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC02F2B27405100B497EC /* FavoritesVacanciesViewController.swift */; };
+		4E1EC0322B27405800B497EC /* FavoritesVacanciesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC0312B27405800B497EC /* FavoritesVacanciesPresenter.swift */; };
 		4E4AA5C92B1CB14B00B012E9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AA5C82B1CB14B00B012E9 /* Config.swift */; };
 		4E4AA5CB2B1CC4D200B012E9 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AA5CA2B1CC4D200B012E9 /* APIError.swift */; };
 		4E4AA5D22B1CF53F00B012E9 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AA5D12B1CF53F00B012E9 /* APIRouter.swift */; };
@@ -51,6 +54,9 @@
 		4E1EC0242B25E17700B497EC /* VacancyDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacancyDetailsPresenter.swift; sourceTree = "<group>"; };
 		4E1EC0262B272E2D00B497EC /* Extension + String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + String.swift"; sourceTree = "<group>"; };
 		4E1EC0282B27323E00B497EC /* Extension  + Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension  + Int.swift"; sourceTree = "<group>"; };
+		4E1EC02C2B273A7700B497EC /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		4E1EC02F2B27405100B497EC /* FavoritesVacanciesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesVacanciesViewController.swift; sourceTree = "<group>"; };
+		4E1EC0312B27405800B497EC /* FavoritesVacanciesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesVacanciesPresenter.swift; sourceTree = "<group>"; };
 		4E4AA5C82B1CB14B00B012E9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		4E4AA5CA2B1CC4D200B012E9 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		4E4AA5D12B1CF53F00B012E9 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
@@ -126,6 +132,23 @@
 			path = VacancyDetailsModule;
 			sourceTree = "<group>";
 		};
+		4E1EC02B2B273A5B00B497EC /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4E1EC02C2B273A7700B497EC /* TabBarController.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		4E1EC02E2B273FF000B497EC /* FavoritesVacancies */ = {
+			isa = PBXGroup;
+			children = (
+				4E1EC02F2B27405100B497EC /* FavoritesVacanciesViewController.swift */,
+				4E1EC0312B27405800B497EC /* FavoritesVacanciesPresenter.swift */,
+			);
+			path = FavoritesVacancies;
+			sourceTree = "<group>";
+		};
 		4E99EB2C2B19DB98008BE7AB = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				4E99EB4C2B19DD64008BE7AB /* ApplicationLayer */,
+				4E1EC02B2B273A5B00B497EC /* Common */,
 				4E1EC01C2B21E15E00B497EC /* Extensions */,
 				4E99EB542B19E413008BE7AB /* Models */,
 				4E99EB532B19E354008BE7AB /* NetworkLayer */,
@@ -200,6 +224,7 @@
 				4E1EC0122B1F484600B497EC /* Router.swift */,
 				4E1EC0142B1F671A00B497EC /* VacanciesModule */,
 				4E1EC0212B25E12600B497EC /* VacancyDetailsModule */,
+				4E1EC02E2B273FF000B497EC /* FavoritesVacancies */,
 			);
 			path = UserStories;
 			sourceTree = "<group>";
@@ -375,8 +400,10 @@
 				4E4AA5C92B1CB14B00B012E9 /* Config.swift in Sources */,
 				4E99EB392B19DB98008BE7AB /* AppDelegate.swift in Sources */,
 				4E4AA5CB2B1CC4D200B012E9 /* APIError.swift in Sources */,
+				4E1EC02D2B273A7700B497EC /* TabBarController.swift in Sources */,
 				4E1EC0292B27323E00B497EC /* Extension  + Int.swift in Sources */,
 				4E1EC0132B1F484600B497EC /* Router.swift in Sources */,
+				4E1EC0322B27405800B497EC /* FavoritesVacanciesPresenter.swift in Sources */,
 				4E1EC0162B1F677300B497EC /* VacanciesPresenter.swift in Sources */,
 				4EA8EF982B1E021300CA27B3 /* VacanciesRouter.swift in Sources */,
 				4EA8EF9C2B1E036000CA27B3 /* Vacancies.swift in Sources */,
@@ -386,6 +413,7 @@
 				4E1EC0182B20CB7800B497EC /* VacancyCollectionViewCell.swift in Sources */,
 				4E1EC0112B1F481500B497EC /* ModuleBuilder.swift in Sources */,
 				4E99EB3B2B19DB98008BE7AB /* SceneDelegate.swift in Sources */,
+				4E1EC0302B27405100B497EC /* FavoritesVacanciesViewController.swift in Sources */,
 				4E1EC01E2B21E17A00B497EC /* Extension + UIImageView.swift in Sources */,
 				4EA8EF9A2B1E021A00CA27B3 /* VacanciesProvider.swift in Sources */,
 				4E1EC0232B25E16700B497EC /* VacancyDetailsViewController.swift in Sources */,

@@ -23,22 +23,25 @@ protocol VacanciesViewProtocol: AnyObject {
 final class VacanciesViewController: UIViewController {
     
     // MARK: - Properties
-    
+    weak var tabBar: TabBarController?
     var presenter: VacanciesPresenterProtocol!
     private var collectionView: UICollectionView!
-    private let searchController = UISearchController(searchResultsController: nil)
     private var cancellabels = Set<AnyCancellable>()
     
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupSearchController()
         setupCollectionView()
         addSubviews()
         applyConstraints()
         listenForSearchTextChanges()
         presenter.fetchVacancies()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
     }
     
     // MARK: - Private Methods
@@ -52,16 +55,7 @@ final class VacanciesViewController: UIViewController {
             $0.edges.equalToSuperview()
         }
     }
-    
-    private func setupSearchController() {
-        navigationItem.searchController = searchController
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.placeholder = "Введите в поиск название вакансии"
-        definesPresentationContext = false
-        navigationItem.hidesSearchBarWhenScrolling = true
-    }
-    
+
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -74,7 +68,7 @@ final class VacanciesViewController: UIViewController {
     }
     
     private func listenForSearchTextChanges() {
-        searchController.searchBar.searchTextField.textPublisher()
+        tabBar?.searchController.searchBar.searchTextField.textPublisher()
             .debounce(for: 0.5, scheduler: DispatchQueue.main)
             .sink { (searchText) in
                 self.presenter.prepareModelForRequest()
@@ -119,7 +113,7 @@ extension VacanciesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let vacancies = presenter.vacancies else { return }
         if indexPath.row == vacancies.items.count - 5 {
-            guard let searchText = searchController.searchBar.searchTextField.text else { return }
+            guard let searchText = tabBar?.searchController.searchBar.searchTextField.text else { return }
             presenter.fetchAdditionalVacancies(with: searchText)
         }
     }
