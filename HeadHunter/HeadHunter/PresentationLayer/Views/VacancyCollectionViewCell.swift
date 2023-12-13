@@ -14,6 +14,11 @@ import SnapKit
 
 final class VacancyCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - Public Properties
+    
+    weak var delegate: VacancyCollectionViewCellDelegate?
+    var indexPath: Int?
+    
     // MARK: - Private Properties
     
     private lazy var vacancyName: UILabel = _vacancyName
@@ -146,6 +151,11 @@ final class VacancyCollectionViewCell: UICollectionViewCell {
             salaryLabel.text = "Заработная плата не указана"
         }
     }
+    
+    @objc private func showDetailsButtonDidPressed() {
+        guard let indexPath = indexPath else { return }
+        delegate?.showDetailsButtonDidPressed(at: indexPath)
+    }
 }
 
 // MARK: - Private Extension
@@ -198,6 +208,7 @@ private extension VacancyCollectionViewCell {
         result.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         result.backgroundColor = #colorLiteral(red: 0.2972861528, green: 0.6990200281, blue: 0.3044068515, alpha: 1)
         result.layer.cornerRadius = 20
+        result.addTarget(self, action: #selector(showDetailsButtonDidPressed), for: .touchUpInside)
         return result
     }
     

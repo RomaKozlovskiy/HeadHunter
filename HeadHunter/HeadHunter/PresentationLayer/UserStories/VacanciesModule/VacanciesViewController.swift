@@ -18,11 +18,18 @@ protocol VacanciesViewProtocol: AnyObject {
     func reloadData()
 }
 
+// MARK: - VacancyCollectionViewCellDelegate
+
+protocol VacancyCollectionViewCellDelegate: AnyObject {
+    func showDetailsButtonDidPressed(at indexPath: Int)
+}
+
 // MARK: - VacanciesViewController
 
 final class VacanciesViewController: UIViewController {
     
     // MARK: - Properties
+    
     weak var tabBar: TabBarController?
     var presenter: VacanciesPresenterProtocol!
     private var collectionView: UICollectionView!
@@ -87,6 +94,15 @@ extension VacanciesViewController: VacanciesViewProtocol {
     }
 }
 
+// MARK: - VacancyCollectionViewCellDelegate Implementation
+
+extension VacanciesViewController: VacancyCollectionViewCellDelegate {
+    func showDetailsButtonDidPressed(at indexPath: Int) {
+        guard let vacancyID = presenter.vacancies?.items[indexPath].id else { return }
+        presenter.showVacancyDetails(with: vacancyID)
+    }
+}
+
 // MARK: - UICollectionViewDataSource
 
 extension VacanciesViewController: UICollectionViewDataSource {
@@ -96,6 +112,8 @@ extension VacanciesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: VacancyCollectionViewCell.self), for: indexPath) as! VacancyCollectionViewCell
+        cell.delegate = self
+        cell.indexPath = indexPath.row
         let vacancies = presenter.vacancies
         cell.setup(with: vacancies, at: indexPath.row)
         return cell
