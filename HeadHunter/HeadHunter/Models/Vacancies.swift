@@ -39,6 +39,7 @@ struct Item: Decodable {
     let employer: Employer?
     let snippet: Snippet?
     let experience: Employment?
+    var favoriteStatus: Bool?
 }
 
 // MARK: - Salary

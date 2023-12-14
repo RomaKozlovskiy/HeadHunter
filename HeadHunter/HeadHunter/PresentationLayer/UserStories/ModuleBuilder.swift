@@ -23,10 +23,12 @@ final class ModuleBuilder: ModuleBuilderProtocol {
     func createVacanciesModule(with router: RouterProtocol, and tabBar: TabBarController) -> UIViewController {
         let view = VacanciesViewController()
         let vacanciesProvider = VacanciesProvider()
+        let favoritesVacanciesStore = FavoriteVacanciesStore.shared
         let presenter = VacanciesPresenter(
             view: view,
             router: router,
-            vacanciesProvider: vacanciesProvider
+            vacanciesProvider: vacanciesProvider,
+            favoriteVacanciesStore: favoritesVacanciesStore
         )
         view.presenter = presenter
         view.tabBar = tabBar
@@ -49,7 +51,8 @@ final class ModuleBuilder: ModuleBuilderProtocol {
     
     func createFavoritesVacanciesModule() -> UIViewController {
         let view = FavoritesVacanciesViewController()
-        let presenter = FavoritesVacanciesPresenter(view: view)
+        let favoriteVacanciesStore = FavoriteVacanciesStore.shared
+        let presenter = FavoritesVacanciesPresenter(view: view, favoriteVacanciesStore: favoriteVacanciesStore)
         view.presenter = presenter
         return view
     }

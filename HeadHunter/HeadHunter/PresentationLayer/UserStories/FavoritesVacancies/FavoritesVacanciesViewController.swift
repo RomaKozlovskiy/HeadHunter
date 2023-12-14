@@ -23,7 +23,11 @@ final class FavoritesVacanciesViewController: UIViewController {
     
     var presenter: FavoritesVacanciesPresenterProtocol!
     private var collectionView: UICollectionView!
-    var favoriteVacancies = FavoriteVacanciesStore.shared.fetchFavoriteVacancies() //TODO: - винести инит в билдер
+
+    var favoriteVacancies: [Item?] {
+        presenter.getFavoriteVacancies()
+    }
+        
     
     // MARK: - View Lifecycle
     
@@ -38,6 +42,7 @@ final class FavoritesVacanciesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        collectionView.reloadData()
     }
     
     // MARK: - Private Methods
@@ -72,12 +77,12 @@ extension FavoritesVacanciesViewController: FavoritesVacanciesViewProtocol {
 
 extension FavoritesVacanciesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        favoriteVacancies.count
+        return favoriteVacancies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: VacancyCollectionViewCell.self), for: indexPath) as! VacancyCollectionViewCell
-         let favoriteVacancy = favoriteVacancies[indexPath.row]
+        let favoriteVacancy = favoriteVacancies[indexPath.row]
         cell.setup(with: favoriteVacancy)
         return cell
     }

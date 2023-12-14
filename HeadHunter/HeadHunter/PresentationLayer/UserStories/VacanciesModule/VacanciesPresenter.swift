@@ -16,13 +16,17 @@ protocol VacanciesPresenterProtocol: AnyObject {
     init(
         view: VacanciesViewProtocol,
         router: RouterProtocol,
-        vacanciesProvider: VacanciesProvider
+        vacanciesProvider: VacanciesProvider,
+        favoriteVacanciesStore: FavoriteVacanciesStoreProtocol
     )
     func prepareModelForRequest()
     func fetchVacancies()
     func fetchVacancies(with searchText: String)
     func fetchAdditionalVacancies(with searchText: String)
     func showVacancyDetails(with vacancyID: String)
+    func setFavoriteVacancy(from vacancy: Item, by status: Bool)
+    func getFavoriteVacancies() -> [Item?]
+    func test()
 }
 
 // MARK: - VacanciesPresenter
@@ -35,16 +39,18 @@ final class VacanciesPresenter: VacanciesPresenterProtocol {
     var router: RouterProtocol?
     let vacanciesProvider: VacanciesProvider!
     var vacancies: Vacancies?
-    
+    var favoriteVacanciesStore: FavoriteVacanciesStoreProtocol?
     // MARK: - Init
     
     required init(
         view: VacanciesViewProtocol,
         router: RouterProtocol,
-        vacanciesProvider: VacanciesProvider) {
+        vacanciesProvider: VacanciesProvider,
+        favoriteVacanciesStore: FavoriteVacanciesStoreProtocol) {
             self.view = view
             self.router = router
             self.vacanciesProvider = vacanciesProvider
+            self.favoriteVacanciesStore = favoriteVacanciesStore
         }
     
     // MARK: - Public Methods
@@ -92,5 +98,40 @@ final class VacanciesPresenter: VacanciesPresenterProtocol {
     
     func showVacancyDetails(with vacancyID: String) {
         router?.showVacancyDetails(with: vacancyID)
+    }
+    
+    func setFavoriteVacancy(from vacancy: Item, by status: Bool) {
+        if status == true {
+            FavoriteVacanciesStore.shared.createFavoriteVacancy(from: vacancy)
+        } else if status == false {
+            FavoriteVacanciesStore.shared.deleteFavoriteVacancy(by: vacancy.id ?? "")
+        }
+    }
+    func getFavoriteVacancies() -> [Item?] {
+        let favoriteVacancies = favoriteVacanciesStore?.fetchFavoriteVacancies()
+        return favoriteVacancies ?? []
+    }
+    
+    func test() {
+        guard let favoriteVacancies = favoriteVacanciesStore?.fetchFavoriteVacancies() else { return }
+        guard let vacancies = vacancies else { return }
+        
+        if favoriteVacancies.count != 0 {
+            for i in 0...favoriteVacancies.count - 1 {
+                
+                for j in 0...vacancies.items.count - 1 {
+                    if favoriteVacancies[i]?.id == vacancies.items[j].id {
+                        print(vacancies.items[j].name)
+                        self.vacancies?.items[j].favoriteStatus = true
+                    }
+                }
+            }
+        }
+        
+//        print(self.vacancies?.items.forEach({ item in
+//            print(item.favoriteStatus)
+//        }))
+        guard let vacancies = self.vacancies else { return }
+        view?.setupFavoriteStatus(with: vacancies)
     }
 }

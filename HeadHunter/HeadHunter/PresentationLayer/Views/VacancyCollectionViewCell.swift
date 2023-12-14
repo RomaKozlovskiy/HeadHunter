@@ -29,6 +29,7 @@ final class VacancyCollectionViewCell: UICollectionViewCell {
     private lazy var companyLogo: UIImageView = _companyLogo
     private lazy var showDetailsButton: UIButton = _showDetailsButton
     private lazy var favoriteButton: UIButton = _favoriteButton
+    private var favoriteStatus: Bool = false
     
     // MARK: - Init
     
@@ -71,6 +72,13 @@ final class VacancyCollectionViewCell: UICollectionViewCell {
         companyName.text = vacancy?.employer?.name
         experienceLabel.text = vacancy?.experience?.name
         companyLogo.load(stringUrl: vacancy?.employer?.logoUrls?.original ?? "")
+        print(vacancy?.favoriteStatus)
+        favoriteStatus = vacancy?.favoriteStatus ?? false
+        if favoriteStatus == true {
+            favoriteButton.tintColor = .red
+        } else {
+            favoriteButton.tintColor = .gray
+        }
     }
     
     // MARK: - Private Methods
@@ -158,6 +166,13 @@ final class VacancyCollectionViewCell: UICollectionViewCell {
         guard let indexPath = indexPath else { return }
         delegate?.showDetailsButtonDidPressed(at: indexPath)
     }
+    
+    @objc private func favoriteButtonDidPressed() {
+        guard let indexPath = indexPath else { return }
+        favoriteStatus.toggle()
+        favoriteButton.tintColor = favoriteStatus ? .systemRed: #colorLiteral(red: 0.9490196109, green: 0.9490196109, blue: 0.9490196109, alpha: 1)
+        delegate?.favoriteButtonDidPressed(at: indexPath, with: favoriteStatus)
+    }
 }
 
 // MARK: - Private Extension
@@ -217,10 +232,11 @@ private extension VacancyCollectionViewCell {
     var _favoriteButton: UIButton {
         let result = UIButton(type: .custom)
         result.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-        result.tintColor = #colorLiteral(red: 0.9490196109, green: 0.9490196109, blue: 0.9490196109, alpha: 1)
+        result.tintColor = favoriteStatus ? .systemRed: #colorLiteral(red: 0.9490196109, green: 0.9490196109, blue: 0.9490196109, alpha: 1)
         result.contentVerticalAlignment = .fill
         result.contentHorizontalAlignment = .fill
         result.imageView?.contentMode = .scaleAspectFit
+        result.addTarget(self, action: #selector(favoriteButtonDidPressed), for: .touchUpInside)
         return result
     }
 }
