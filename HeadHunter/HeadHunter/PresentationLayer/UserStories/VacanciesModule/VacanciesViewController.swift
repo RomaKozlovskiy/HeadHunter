@@ -114,8 +114,8 @@ extension VacanciesViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: VacancyCollectionViewCell.self), for: indexPath) as! VacancyCollectionViewCell
         cell.delegate = self
         cell.indexPath = indexPath.row
-        let vacancies = presenter.vacancies
-        cell.setup(with: vacancies, at: indexPath.row)
+        let vacancy = presenter.vacancies?.items[indexPath.row]
+        cell.setup(with: vacancy)
         return cell
     }
 }

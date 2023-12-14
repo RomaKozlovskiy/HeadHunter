@@ -64,8 +64,7 @@ final class VacancyCollectionViewCell: UICollectionViewCell {
     }
     // MARK: - Public Methods
     
-    func setup(with vacancies: Vacancies?, at index: Int) {
-        let vacancy = vacancies?.items[index]
+    func setup(with vacancy: Item?) {
         vacancyName.text = vacancy?.name
         setSalary(from: vacancy)
         vacancyCity.text = vacancy?.address?.city
@@ -143,7 +142,10 @@ final class VacancyCollectionViewCell: UICollectionViewCell {
         let salaryTo = vacancy?.salary?.to?.salaryFormatting
         let currency = vacancy?.salary?.currency?.currencyFormatting
 
-        if let salaryFrom = salaryFrom, let salaryTo = salaryTo, let currency = currency {
+        if let salaryFrom = salaryFrom,
+            let salaryTo = salaryTo,
+            let currency = currency,
+            salaryTo != String(0) {
             salaryLabel.text = "от " + salaryFrom + " до " + salaryTo + " " + currency
         } else if salaryFrom != nil && currency != nil {
             salaryLabel.text = salaryFrom! + " " + currency!
