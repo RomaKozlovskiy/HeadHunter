@@ -66,7 +66,7 @@ extension FavoriteVacanciesStore: FavoriteVacanciesStoreProtocol {
         var favoriteVacancies: [Item?] = []
         
         favoriteVacanciesEntity.forEach { entity in
-            let vacancy = Item(id: entity.id, name: entity.name, salary: Salary(from: Int(entity.salaryFrom), to: Int(entity.salaryTo), currency: entity.salaryCurrency), address: Address(city: entity.city, street: "", raw: ""), employer: Employer(id: "", name: "", logoUrls: LogoUrls(the90: "", the240: "", original: entity.companyLogoUrl)), snippet: Snippet(requirement: "", responsibility: ""), experience: Employment(id: "", name: entity.experience))
+            let vacancy = Item(id: entity.id, name: entity.name, salary: Salary(from: Int(entity.salaryFrom), to: Int(entity.salaryTo), currency: entity.salaryCurrency), address: Address(city: entity.city, street: "", raw: ""), employer: Employer(id: "", name: entity.companyName, logoUrls: LogoUrls(the90: "", the240: "", original: entity.companyLogoUrl)), snippet: Snippet(requirement: "", responsibility: ""), experience: Employment(id: "", name: entity.experience))
             favoriteVacancies.append(vacancy)
         }
         return favoriteVacancies

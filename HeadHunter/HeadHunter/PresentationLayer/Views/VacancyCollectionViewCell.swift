@@ -145,15 +145,19 @@ final class VacancyCollectionViewCell: UICollectionViewCell {
         let salaryFrom = vacancy?.salary?.from?.salaryFormatting
         let salaryTo = vacancy?.salary?.to?.salaryFormatting
         let currency = vacancy?.salary?.currency?.currencyFormatting
-
-        if let salaryFrom = salaryFrom,
-            let salaryTo = salaryTo,
-            let currency = currency,
-            salaryTo != String(0) {
+        
+        if let salaryFrom = salaryFrom, let salaryTo = salaryTo, salaryFrom == salaryTo, let currency = currency {
+            salaryLabel.text = salaryFrom + " " + currency
+        } else if let salaryFrom = salaryFrom, salaryFrom != String(0), let salaryTo = salaryTo,
+                  let currency = currency, salaryTo != String(0) {
             salaryLabel.text = "от " + salaryFrom + " до " + salaryTo + " " + currency
-        } else if salaryFrom != nil && currency != nil {
-            salaryLabel.text = salaryFrom! + " " + currency!
-        } else {
+        }
+        else if let salaryFrom = salaryFrom, salaryFrom != String(0), let currency = currency {
+            salaryLabel.text = salaryFrom + " " + currency
+        } else if let salaryTo = salaryTo, let currency = currency {
+            salaryLabel.text = salaryTo + " " + currency
+        }
+        else {
             salaryLabel.text = "Заработная плата не указана"
         }
     }
