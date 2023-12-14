@@ -16,7 +16,6 @@ import Combine
 protocol VacanciesViewProtocol: AnyObject {
     @MainActor
     func reloadData()
-    func setupFavoriteStatus(with vacancies: Vacancies)
 }
 
 // MARK: - VacancyCollectionViewCellDelegate
@@ -92,14 +91,8 @@ final class VacanciesViewController: UIViewController {
 
 extension VacanciesViewController: VacanciesViewProtocol {
     func reloadData() {
+        presenter.setFavoriteStatus()
         collectionView.reloadData()
-        presenter.test()
-    }
-    
-    func setupFavoriteStatus(with vacancies: Vacancies) {
-        print(vacancies.items.forEach({ item in
-            //print(item.favoriteStatus, "VIEW")
-        }))
     }
 }
 
@@ -112,6 +105,7 @@ extension VacanciesViewController: VacancyCollectionViewCellDelegate {
     }
     
     func favoriteButtonDidPressed(at indexPath: Int, with status: Bool) {
+        presenter.vacancies?.items[indexPath].favoriteStatus = status
         guard let vacancy = presenter.vacancies?.items[indexPath] else { return }
         presenter.setFavoriteVacancy(from: vacancy, by: status)
     }
@@ -129,7 +123,6 @@ extension VacanciesViewController: UICollectionViewDataSource {
         cell.delegate = self
         cell.indexPath = indexPath.row
         let vacancy = presenter.vacancies?.items[indexPath.row]
-        print(vacancy?.favoriteStatus, vacancy?.name)
         cell.setup(with: vacancy)
         return cell
     }

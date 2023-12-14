@@ -62,6 +62,7 @@ final class VacancyCollectionViewCell: UICollectionViewCell {
         companyName.text = nil
         experienceLabel.text = nil
         companyLogo.image = nil
+        favoriteButton.tintColor = #colorLiteral(red: 0.9490196109, green: 0.9490196109, blue: 0.9490196109, alpha: 1)
     }
     // MARK: - Public Methods
     
@@ -72,13 +73,8 @@ final class VacancyCollectionViewCell: UICollectionViewCell {
         companyName.text = vacancy?.employer?.name
         experienceLabel.text = vacancy?.experience?.name
         companyLogo.load(stringUrl: vacancy?.employer?.logoUrls?.original ?? "")
-        print(vacancy?.favoriteStatus)
         favoriteStatus = vacancy?.favoriteStatus ?? false
-        if favoriteStatus == true {
-            favoriteButton.tintColor = .red
-        } else {
-            favoriteButton.tintColor = .gray
-        }
+        favoriteButton.tintColor = favoriteStatus ? .systemRed: #colorLiteral(red: 0.9490196109, green: 0.9490196109, blue: 0.9490196109, alpha: 1)
     }
     
     // MARK: - Private Methods

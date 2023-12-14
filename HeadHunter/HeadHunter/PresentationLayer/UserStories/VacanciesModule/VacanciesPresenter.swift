@@ -25,8 +25,7 @@ protocol VacanciesPresenterProtocol: AnyObject {
     func fetchAdditionalVacancies(with searchText: String)
     func showVacancyDetails(with vacancyID: String)
     func setFavoriteVacancy(from vacancy: Item, by status: Bool)
-    func getFavoriteVacancies() -> [Item?]
-    func test()
+    func setFavoriteStatus()
 }
 
 // MARK: - VacanciesPresenter
@@ -107,31 +106,17 @@ final class VacanciesPresenter: VacanciesPresenterProtocol {
             FavoriteVacanciesStore.shared.deleteFavoriteVacancy(by: vacancy.id ?? "")
         }
     }
-    func getFavoriteVacancies() -> [Item?] {
-        let favoriteVacancies = favoriteVacanciesStore?.fetchFavoriteVacancies()
-        return favoriteVacancies ?? []
-    }
     
-    func test() {
-        guard let favoriteVacancies = favoriteVacanciesStore?.fetchFavoriteVacancies() else { return }
+    func setFavoriteStatus() {
+        guard let favoriteVacancies = favoriteVacanciesStore?.fetchFavoriteVacancies(),
+              favoriteVacancies.count != 0 else { return }
         guard let vacancies = vacancies else { return }
-        
-        if favoriteVacancies.count != 0 {
-            for i in 0...favoriteVacancies.count - 1 {
-                
-                for j in 0...vacancies.items.count - 1 {
-                    if favoriteVacancies[i]?.id == vacancies.items[j].id {
-                        print(vacancies.items[j].name)
-                        self.vacancies?.items[j].favoriteStatus = true
-                    }
+        for i in 0...favoriteVacancies.count - 1 {
+            for j in 0...vacancies.items.count - 1 {
+                if favoriteVacancies[i]?.id == vacancies.items[j].id {
+                    self.vacancies?.items[j].favoriteStatus = true
                 }
             }
         }
-        
-//        print(self.vacancies?.items.forEach({ item in
-//            print(item.favoriteStatus)
-//        }))
-        guard let vacancies = self.vacancies else { return }
-        view?.setupFavoriteStatus(with: vacancies)
     }
 }
