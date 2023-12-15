@@ -160,9 +160,17 @@
 			children = (
 				4E1EC08C2B2A3CCE00B497EC /* CoreData.xcdatamodeld */,
 				4E1EC0922B2A428200B497EC /* FavoriteVacancy+CoreDataProperties.swift */,
-				4E1EC0962B2A45C300B497EC /* FavoriteVacanciesStore.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		4E1EC0A32B2C84B100B497EC /* CoreDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				4E1EC0962B2A45C300B497EC /* FavoriteVacanciesStore.swift */,
+				4E1EC0952B2A459000B497EC /* CoreData */,
+			);
+			path = CoreDataManager;
 			sourceTree = "<group>";
 		};
 		4E99EB2C2B19DB98008BE7AB = {
@@ -187,7 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				4E99EB4C2B19DD64008BE7AB /* ApplicationLayer */,
-				4E1EC0952B2A459000B497EC /* CoreData */,
+				4E1EC0A32B2C84B100B497EC /* CoreDataManager */,
 				4E1EC02B2B273A5B00B497EC /* Common */,
 				4E1EC01C2B21E15E00B497EC /* Extensions */,
 				4E99EB542B19E413008BE7AB /* Models */,
