@@ -18,13 +18,6 @@ protocol VacanciesViewProtocol: AnyObject {
     func reloadData()
 }
 
-// MARK: - VacancyCollectionViewCellDelegate
-
-protocol VacancyCollectionViewCellDelegate: AnyObject {
-    func showDetailsButtonDidPressed(at indexPath: Int)
-    func favoriteButtonDidPressed(at indexPath: Int, with status: Bool)
-}
-
 // MARK: - VacanciesViewController
 
 final class VacanciesViewController: UIViewController {

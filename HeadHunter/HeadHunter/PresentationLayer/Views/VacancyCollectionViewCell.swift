@@ -10,6 +10,13 @@
 import UIKit
 import SnapKit
 
+// MARK: - VacancyCollectionViewCellDelegate
+
+protocol VacancyCollectionViewCellDelegate: AnyObject {
+    func showDetailsButtonDidPressed(at indexPath: Int)
+    func favoriteButtonDidPressed(at indexPath: Int, with status: Bool)
+}
+
 // MARK: - VacancyCollectionViewCell
 
 final class VacancyCollectionViewCell: UICollectionViewCell {
