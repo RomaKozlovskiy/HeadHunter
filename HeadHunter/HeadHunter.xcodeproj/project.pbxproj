@@ -22,10 +22,10 @@
 		4E1EC0292B27323E00B497EC /* Extension  + Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC0282B27323E00B497EC /* Extension  + Int.swift */; };
 		4E1EC02D2B273A7700B497EC /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC02C2B273A7700B497EC /* TabBarController.swift */; };
 		4E1EC0302B27405100B497EC /* FavoritesVacanciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC02F2B27405100B497EC /* FavoritesVacanciesViewController.swift */; };
-		4E1EC0322B27405800B497EC /* FavoritesVacanciesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC0312B27405800B497EC /* FavoritesVacanciesPresenter.swift */; };
 		4E1EC08E2B2A3CCE00B497EC /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC08C2B2A3CCE00B497EC /* CoreData.xcdatamodeld */; };
 		4E1EC0942B2A428200B497EC /* FavoriteVacancy+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC0922B2A428200B497EC /* FavoriteVacancy+CoreDataProperties.swift */; };
 		4E1EC0972B2A45C300B497EC /* FavoriteVacanciesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC0962B2A45C300B497EC /* FavoriteVacanciesStore.swift */; };
+		4E1EC0A22B2C7E5E00B497EC /* FavoritesVacanciesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EC0A12B2C7E5E00B497EC /* FavoritesVacanciesPresenter.swift */; };
 		4E4AA5C92B1CB14B00B012E9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AA5C82B1CB14B00B012E9 /* Config.swift */; };
 		4E4AA5CB2B1CC4D200B012E9 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AA5CA2B1CC4D200B012E9 /* APIError.swift */; };
 		4E4AA5D22B1CF53F00B012E9 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AA5D12B1CF53F00B012E9 /* APIRouter.swift */; };
@@ -59,10 +59,10 @@
 		4E1EC0282B27323E00B497EC /* Extension  + Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension  + Int.swift"; sourceTree = "<group>"; };
 		4E1EC02C2B273A7700B497EC /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		4E1EC02F2B27405100B497EC /* FavoritesVacanciesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesVacanciesViewController.swift; sourceTree = "<group>"; };
-		4E1EC0312B27405800B497EC /* FavoritesVacanciesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesVacanciesPresenter.swift; sourceTree = "<group>"; };
 		4E1EC08D2B2A3CCE00B497EC /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		4E1EC0922B2A428200B497EC /* FavoriteVacancy+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteVacancy+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4E1EC0962B2A45C300B497EC /* FavoriteVacanciesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVacanciesStore.swift; sourceTree = "<group>"; };
+		4E1EC0A12B2C7E5E00B497EC /* FavoritesVacanciesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesVacanciesPresenter.swift; sourceTree = "<group>"; };
 		4E4AA5C82B1CB14B00B012E9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		4E4AA5CA2B1CC4D200B012E9 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		4E4AA5D12B1CF53F00B012E9 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				4E1EC02F2B27405100B497EC /* FavoritesVacanciesViewController.swift */,
-				4E1EC0312B27405800B497EC /* FavoritesVacanciesPresenter.swift */,
+				4E1EC0A12B2C7E5E00B497EC /* FavoritesVacanciesPresenter.swift */,
 			);
 			path = FavoritesVacancies;
 			sourceTree = "<group>";
@@ -422,9 +422,9 @@
 				4E1EC02D2B273A7700B497EC /* TabBarController.swift in Sources */,
 				4E1EC0292B27323E00B497EC /* Extension  + Int.swift in Sources */,
 				4E1EC0132B1F484600B497EC /* Router.swift in Sources */,
-				4E1EC0322B27405800B497EC /* FavoritesVacanciesPresenter.swift in Sources */,
 				4E1EC0162B1F677300B497EC /* VacanciesPresenter.swift in Sources */,
 				4EA8EF982B1E021300CA27B3 /* VacanciesRouter.swift in Sources */,
+				4E1EC0A22B2C7E5E00B497EC /* FavoritesVacanciesPresenter.swift in Sources */,
 				4EA8EF9C2B1E036000CA27B3 /* Vacancies.swift in Sources */,
 				4E1EC00C2B1F33B500B497EC /* VacancyDetailsProvider.swift in Sources */,
 				4E1EC0272B272E2D00B497EC /* Extension + String.swift in Sources */,

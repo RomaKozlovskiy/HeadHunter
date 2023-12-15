@@ -28,7 +28,6 @@ final class FavoritesVacanciesViewController: UIViewController {
         presenter.getFavoriteVacancies()
     }
         
-    
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
@@ -75,6 +74,8 @@ extension FavoritesVacanciesViewController: FavoritesVacanciesViewProtocol {
     
 }
 
+// MARK: - UICollectionViewDataSource
+
 extension FavoritesVacanciesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return favoriteVacancies.count
@@ -82,16 +83,21 @@ extension FavoritesVacanciesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: VacancyCollectionViewCell.self), for: indexPath) as! VacancyCollectionViewCell
+        cell.indexPath = indexPath.row
+        cell.delegate = self
         let favoriteVacancy = favoriteVacancies[indexPath.row]
         cell.setup(with: favoriteVacancy)
         return cell
     }
-    
-    
 }
 
+// MARK: - UICollectionViewDelegate
+
 extension FavoritesVacanciesViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let vacancy = favoriteVacancies[indexPath.row]?.id else { return }
+        presenter.showVacancyDetails(with: vacancy)
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
@@ -100,4 +106,21 @@ extension FavoritesVacanciesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 350, height: 240)
     }
+}
+
+// MARK: - VacancyCollectionViewCellDelegate
+
+extension FavoritesVacanciesViewController: VacancyCollectionViewCellDelegate {
+    func showDetailsButtonDidPressed(at indexPath: Int) {
+        guard let vacancy = favoriteVacancies[indexPath]?.id else { return }
+        presenter.showVacancyDetails(with: vacancy)
+    }
+    
+    func favoriteButtonDidPressed(at indexPath: Int, with status: Bool) {
+        guard let vacancy = favoriteVacancies[indexPath] else { return }
+        presenter.setFavoriteVacancy(from: vacancy, by: status)
+        collectionView.reloadData()
+    }
+    
+    
 }

@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let router = Router(navigationController: navigationController, moduleBuilder: moduleBuilder)
         let tabBar = TabBarController()
         let vacanciesViewController = moduleBuilder.createVacanciesModule(with: router, and: tabBar)
-        let favoritesViewController = moduleBuilder.createFavoritesVacanciesModule()
+        let favoritesViewController = moduleBuilder.createFavoritesVacanciesModule(router: router)
         tabBar.setup(with: vacanciesViewController, and: favoritesViewController)
         navigationController.viewControllers.append(tabBar)
         window?.rootViewController = navigationController

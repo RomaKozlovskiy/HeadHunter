@@ -14,7 +14,7 @@ import UIKit
 protocol ModuleBuilderProtocol: AnyObject {
     func createVacanciesModule(with router: RouterProtocol, and tabBar: TabBarController) -> UIViewController
     func createVacancyDetailsModule(with vacancyID: String, router: RouterProtocol) -> UIViewController
-    func createFavoritesVacanciesModule() -> UIViewController
+    func createFavoritesVacanciesModule(router: RouterProtocol) -> UIViewController
 }
 
 // MARK: - ModuleBuilder
@@ -49,10 +49,10 @@ final class ModuleBuilder: ModuleBuilderProtocol {
             return view
         }
     
-    func createFavoritesVacanciesModule() -> UIViewController {
+    func createFavoritesVacanciesModule(router: RouterProtocol) -> UIViewController {
         let view = FavoritesVacanciesViewController()
         let favoriteVacanciesStore = FavoriteVacanciesStore.shared
-        let presenter = FavoritesVacanciesPresenter(view: view, favoriteVacanciesStore: favoriteVacanciesStore)
+        let presenter = FavoritesVacanciesPresenter(view: view, router: router, favoriteVacanciesStore: favoriteVacanciesStore)
         view.presenter = presenter
         return view
     }
