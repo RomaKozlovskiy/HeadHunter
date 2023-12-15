@@ -11,13 +11,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let viewController = ViewController()
-        window?.rootViewController = viewController
+        let navigationController = UINavigationController()
+        let moduleBuilder = ModuleBuilder()
+        let router = Router(navigationController: navigationController, moduleBuilder: moduleBuilder)
+        let tabBar = TabBarController()
+        let vacanciesViewController = moduleBuilder.createVacanciesModule(with: router, and: tabBar)
+        let favoritesViewController = moduleBuilder.createFavoritesVacanciesModule(router: router)
+        tabBar.setup(with: vacanciesViewController, and: favoritesViewController)
+        navigationController.viewControllers.append(tabBar)
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
 
@@ -48,7 +54,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
 
