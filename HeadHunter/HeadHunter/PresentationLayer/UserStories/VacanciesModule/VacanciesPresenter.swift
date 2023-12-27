@@ -39,6 +39,7 @@ final class VacanciesPresenter: VacanciesPresenterProtocol {
     let vacanciesProvider: VacanciesProvider!
     var vacancies: Vacancies?
     var favoriteVacanciesStore: FavoriteVacanciesStoreProtocol?
+    
     // MARK: - Init
     
     required init(
@@ -61,20 +62,19 @@ final class VacanciesPresenter: VacanciesPresenterProtocol {
     }
     
     func fetchVacancies() {
-        Task { [weak self] in
+        Task {
             let vacancies = try await vacanciesProvider.fetchVacancies()
-            self?.vacancies = vacancies
+            self.vacancies = vacancies
             await view?.reloadData()
         }
     }
     
     func fetchVacancies(with searchText: String) {
         if searchText.count >= 3 {
-            Task { [weak self] in
-                guard let strongSelf = self else { return }
+            Task {
                 if vacancies == nil {
                     let vacancies = try await vacanciesProvider.fetchVacancies(with: searchText, currentPage: 0)
-                    strongSelf.vacancies = vacancies
+                    self.vacancies = vacancies
                 }
                 await view?.reloadData()
             }
@@ -85,11 +85,10 @@ final class VacanciesPresenter: VacanciesPresenterProtocol {
         guard let vacancies = vacancies else { return }
         let page = vacancies.page + 1
         if vacancies.items.count < vacancies.pages {
-            Task { [weak self] in
-                guard let strongSelf = self else { return }
+            Task {
                 guard let vacancies = try await vacanciesProvider.fetchVacancies(with: searchText, currentPage: page) else { return }
-                strongSelf.vacancies?.items.append(contentsOf: vacancies.items)
-                strongSelf.vacancies?.page = vacancies.page
+                self.vacancies?.items.append(contentsOf: vacancies.items)
+                self.vacancies?.page = vacancies.page
                 await view?.reloadData()
             }
         }
