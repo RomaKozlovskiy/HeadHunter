@@ -70,12 +70,16 @@ final class VacanciesPresenter: VacanciesPresenterProtocol {
     }
     
     func fetchVacancies(with searchText: String) {
-        if searchText.count >= 3 {
+        if searchText.count >= 3 && vacancies == nil {
             Task {
-                if vacancies == nil {
-                    let vacancies = try await vacanciesProvider.fetchVacancies(with: searchText, currentPage: 0)
-                    self.vacancies = vacancies
-                }
+                let vacancies = try await vacanciesProvider.fetchVacancies(with: searchText, currentPage: 0)
+                self.vacancies = vacancies
+                await view?.reloadData()
+            }
+        } else if searchText.isEmpty {
+            Task {
+                let vacancies = try await vacanciesProvider.fetchVacancies()
+                self.vacancies = vacancies
                 await view?.reloadData()
             }
         }
